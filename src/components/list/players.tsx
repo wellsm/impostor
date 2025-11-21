@@ -44,9 +44,9 @@ export function PlayersList({
           {players.map((player) => (
             <Badge
               className={cn(
-                "rounded bg-primary/20 px-4 py-2 font-semibold text-primary text-sm",
+                "rounded border-border bg-zinc-200/50 p-4 px-4 py-2 font-semibold text-foreground text-sm dark:bg-[#211c27]",
                 full &&
-                  "flex w-full justify-between border-border bg-secondary text-foreground",
+                  "flex w-full justify-between border-border bg-secondary",
                 showImpostor && player.isImpostor && "border-destructive"
               )}
               key={player.id}
