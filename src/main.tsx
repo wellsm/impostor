@@ -9,9 +9,7 @@ import { Game } from "./pages/game.tsx";
 import { Home } from "./pages/home.tsx";
 import { Players } from "./pages/players.tsx";
 
-const root = document.getElementById("root")!;
-
-createRoot(root).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider defaultTheme="system" storageKey="impostor-theme">
       <div className="relative">

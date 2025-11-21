@@ -15,12 +15,7 @@ export function Players() {
         <section>
           <AddPlayer />
         </section>
-        <section>
-          <div className="flex items-center justify-between">
-            <h2 className="font-bold text-xl">Jogadores</h2>
-          </div>
-          <PlayersList full withRemove />
-        </section>
+        <PlayersList full hideTitle withRemove />
         <NavLink to="/">
           <Button className="sticky bottom-0 w-full" size="lg">
             Concluido

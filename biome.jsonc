@@ -41,7 +41,8 @@
         "noSvgWithoutTitle": "off"
       },
       "style": {
-        "noMagicNumbers": "off"
+        "noMagicNumbers": "off",
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "noEmptyBlockStatements": "off"
