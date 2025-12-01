@@ -38,7 +38,9 @@
         "noChildrenProp": "off"
       },
       "a11y": {
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "noNoninteractiveElementInteractions": "off",
+        "noStaticElementInteractions": "off"
       },
       "style": {
         "noMagicNumbers": "off",

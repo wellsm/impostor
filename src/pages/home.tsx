@@ -8,7 +8,7 @@ import { useGameStore } from "@/stores/game";
 
 export function Home() {
   const navigate = useNavigate();
-  const { mode, players, categories, startGame } = useGameStore();
+  const { players, categories, startGame } = useGameStore();
 
   const startGameAndRedirect = () => {
     startGame();

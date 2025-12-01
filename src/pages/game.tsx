@@ -1,53 +1,52 @@
-import { ALargeSmall, Crosshair } from "lucide-react";
+import { useState } from "react";
+import { RevealCard } from "@/components/app/reveal-card";
 import { Topbar } from "@/components/app/topbar";
-import { PlayersList } from "@/components/list/players";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from "@/components/ui/item";
+import { Button } from "@/components/ui/button";
 import { useGameStore } from "@/stores/game";
 
 export function Game() {
   const {
+    players,
     settings: { word },
   } = useGameStore();
+
+  const [revealed, setRevealed] = useState(false);
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const currentPlayer = players[currentIndex];
+
+  function handleNext() {
+    setCurrentIndex(i => i + 1);
+    setRevealed(false); // ← zera quando troca
+  }
 
   if (!word) {
     return null;
   }
 
   return (
-    <div className="h-screen">
+    <div className="flex h-screen flex-col">
       <Topbar backUrl="/" title="Jogo" />
-      <main className="h-full flex-1 space-y-6 p-4">
-        <PlayersList full hideTitle showImpostor />
-        <section className="space-y-4">
-          <Item asChild size="sm" variant="outline">
-            <div>
-              <ItemMedia>
-                <ALargeSmall className="size-5" />
-              </ItemMedia>
-              <ItemContent className="flex items-center">
-                <ItemTitle className="font-bold">Palavra</ItemTitle>
-                <ItemDescription>{word.value}</ItemDescription>
-              </ItemContent>
-            </div>
-          </Item>
-          <Item asChild size="sm" variant="outline">
-            <div>
-              <ItemMedia>
-                <Crosshair className="size-5" />
-              </ItemMedia>
-              <ItemContent className="flex items-center">
-                <ItemTitle className="font-bold">Dica</ItemTitle>
-                <ItemDescription>{word.hint}</ItemDescription>
-              </ItemContent>
-            </div>
-          </Item>
-        </section>
+      <main className="flex h-full flex-1 flex-col items-center justify-center space-y-6 p-12">
+        <RevealCard
+          key={currentPlayer.id}
+          onReveal={() => setRevealed(true)}
+          player={currentPlayer}
+          word={word}
+        />
+
+        {revealed && (
+          currentIndex < players.length - 1 ? (
+            <Button className="w-full" onClick={handleNext} size="xl">
+              Próximo
+            </Button>
+          ) : (
+            <Button className="w-full" onClick={() => navigate("/fim")} size="xl">
+              Iniciar
+            </Button>
+          )
+        )}
       </main>
     </div>
   );
